@@ -18,7 +18,6 @@ import os
 import argparse
 import re
 import fnmatch
-import string
 import collections
 import textwrap
 
@@ -106,8 +105,8 @@ def process(line, mdf_path):
     # identify possible comment
     m = re.search(r'/\**<(.+?(?=\*/))', todo_str)
     if m:
-        comment = string.strip(m.group(1))
-        todo_str = string.strip(todo_str[:m.start()]) # keep just the part before the comment
+        comment = m.group(1).strip()
+        todo_str = todo_str[:m.start()].strip() # keep just the part before the comment
 
     # identify possible parentheses ()
     m = re.search(r'\((.+)\)', todo_str)
